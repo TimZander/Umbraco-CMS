@@ -4,6 +4,7 @@ import { manifests as collectionManifests } from './collection/manifests.js';
 import { manifests as contentManifests } from './content/manifests.js';
 import { manifests as contentTypeManifests } from './content-type/manifests.js';
 import { manifests as cultureManifests } from './culture/manifests.js';
+import { manifests as dashboardManifests } from './dashboard/manifests.js';
 import { manifests as debugManifests } from './debug/manifests.js';
 import { manifests as entityActionManifests } from './entity-action/manifests.js';
 import { manifests as entityBulkActionManifests } from './entity-bulk-action/manifests.js';
@@ -20,6 +21,7 @@ import { manifests as propertyTypeManifests } from './property-type/manifests.js
 import { manifests as recycleBinManifests } from './recycle-bin/manifests.js';
 import { manifests as sectionManifests } from './section/manifests.js';
 import { manifests as serverFileSystemManifests } from './server-file-system/manifests.js';
+import { manifests as tempManifests } from './_temp-location/manifests.js';
 import { manifests as themeManifests } from './themes/manifests.js';
 import { manifests as treeManifests } from './tree/manifests.js';
 import { manifests as workspaceManifests } from './workspace/manifests.js';
@@ -33,6 +35,7 @@ export const manifests: Array<UmbExtensionManifest | UmbExtensionManifestKind> =
 	...contentManifests,
 	...contentTypeManifests,
 	...cultureManifests,
+	...dashboardManifests,
 	...debugManifests,
 	...entityActionManifests,
 	...entityBulkActionManifests,
@@ -49,6 +52,7 @@ export const manifests: Array<UmbExtensionManifest | UmbExtensionManifestKind> =
 	...recycleBinManifests,
 	...sectionManifests,
 	...serverFileSystemManifests,
+	...tempManifests,
 	...themeManifests,
 	...treeManifests,
 	...workspaceManifests,

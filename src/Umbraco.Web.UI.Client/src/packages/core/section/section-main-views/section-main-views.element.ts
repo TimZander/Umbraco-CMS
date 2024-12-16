@@ -2,9 +2,13 @@ import type { ManifestSectionView, UmbSectionViewElement } from '../extensions/i
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 import { css, html, nothing, customElement, property, state } from '@umbraco-cms/backoffice/external/lit';
 import type { UmbRoute, UmbRouterSlotChangeEvent, UmbRouterSlotInitEvent } from '@umbraco-cms/backoffice/router';
-import type { ManifestDashboard, UmbDashboardElement } from '@umbraco-cms/backoffice/dashboard';
+import type { ManifestDashboard, UmbDashboardContext, UmbDashboardElement } from '@umbraco-cms/backoffice/dashboard';
 import { umbExtensionsRegistry } from '@umbraco-cms/backoffice/extension-registry';
-import { UmbExtensionsManifestInitializer, createExtensionElement } from '@umbraco-cms/backoffice/extension-api';
+import {
+	UmbExtensionsManifestInitializer,
+	createExtensionApi,
+	createExtensionElement,
+} from '@umbraco-cms/backoffice/extension-api';
 import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
 import { pathFolderName } from '@umbraco-cms/backoffice/utils';
 
@@ -57,7 +61,10 @@ export class UmbSectionMainViewElement extends UmbLitElement {
 			return {
 				path: this.#constructDashboardPath(manifest),
 				component: () => createExtensionElement(manifest),
-				setup: (component: UmbDashboardElement) => {
+				setup: async (component: UmbDashboardElement) => {
+					// TODO: hack. We shouldn't have to spin up the api manually here.
+					const api = await createExtensionApi<UmbDashboardContext>(component, manifest);
+					api?.setManifest(manifest);
 					component.manifest = manifest;
 				},
 			} as UmbRoute;
