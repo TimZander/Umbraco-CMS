@@ -78,17 +78,20 @@ export class UmbBlockWorkspaceViewEditTabElement extends UmbLitElement {
 	override render() {
 		return html`
 			${this._hasProperties
-				? html` <umb-block-workspace-view-edit-properties
-						.managerName=${this.#managerName}
-						data-mark="property-group:root"
-						.containerId=${this._containerId}></umb-block-workspace-view-edit-properties>`
+				? html`<uui-box
+						><umb-block-workspace-view-edit-properties
+							.managerName=${this.#managerName}
+							data-mark="property-group:root"
+							.containerId=${this._containerId}></umb-block-workspace-view-edit-properties
+					></uui-box>`
 				: ''}
 			${this.hideSingleGroup && this._groups.length === 1
 				? this.renderGroup(this._groups[0])
 				: repeat(
 						this._groups,
 						(group) => group.id,
-						(group) => html` <uui-box .headline=${group.name}>${this.renderGroup(group)}</uui-box>`,
+						(group) =>
+							html` <uui-box .headline=${this.localize.string(group.name)}>${this.renderGroup(group)}</uui-box>`,
 					)}
 		`;
 	}
