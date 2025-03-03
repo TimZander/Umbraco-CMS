@@ -3,7 +3,7 @@
 changelog:
   exclude:
     labels:
-      - ignore-for-release
+      - release/no-notes
       - duplicate
       - wontfix
   categories:
